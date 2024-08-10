@@ -82,10 +82,7 @@
                 <label for="destino" class="form-label">Destino:</label>
                 <input type="text" class="form-control" id="destino" name="destino" required>
             </div>
-            <div class="mb-3">
-                <label for="fecha" class="form-label">Fecha:</label>
-                <input type="date" class="form-control" id="fecha" name="fecha" required>
-            </div>
+
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary" onclick="enviarDatosViaje()">Registrar trayecto</button>
             </div>

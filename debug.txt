@@ -1,9 +1,9 @@
 Array
 (
-    [codigo_apartado] => 15
-    [num_asiento] => 15
+    [codigo_apartado] => 4
+    [num_asiento] => 4
     [estado_reserva] => ocupado
-    [id_usuario] => 15
+    [id_usuario] => 31
     [id_horario] => 33
     [id_trayecto] => 8
     [origen] => San Pablo

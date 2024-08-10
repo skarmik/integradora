@@ -93,7 +93,6 @@ include 'conection/conection.php';
                 <label for="id_trayecto" class="form-label">Trayecto:</label>
                 <select class="form-control" id="id_trayecto" name="id_trayecto" required>
                     <?php
-
                         $sql = "SELECT id_trayecto, origen, destino FROM trayecto";
                         $result = $conection->query($sql);
                         
@@ -111,13 +110,12 @@ include 'conection/conection.php';
                 <label for="id_autobus" class="form-label">Autobús:</label>
                 <select class="form-control" id="id_autobus" name="id_autobus" required>
                     <?php
-
-                        $sql = "SELECT id_autobus, numero_autobus, asientos FROM autobus";
+                        $sql = "SELECT id_autobus, numero_autobus, modelo_autobus, asientos FROM autobus";
                         $result = $conection->query($sql);
 
                         if ($result->num_rows > 0) {
                             while ($row = $result->fetch_assoc()) {
-                                echo "<option value='" . $row['id_autobus'] . "'>Autobus (" . $row['numero_autobus'] . ") - (" . $row['asientos'] . ") Asientos</option>";
+                                echo "<option value='" . $row['id_autobus'] . "'>" . $row['modelo_autobus'] . " (" . $row['numero_autobus'] . ") - (" . $row['asientos'] . ") Asientos</option>";
                             }
                         } else {
                             echo "<option>No hay autobuses disponibles</option>";
@@ -170,7 +168,6 @@ include 'conection/conection.php';
             var params = new URLSearchParams(formData).toString();
             xhr.send(params);
         }
-
     </script>
 
 </body>

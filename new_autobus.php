@@ -79,13 +79,18 @@
                 <input type="text" class="form-control" id="numero_autobus" name="numero_autobus" required>
             </div>
             <div class="mb-3">
-                <label for="asientos" class="form-label">Asientos:</label>
-                <input type="number" class="form-control" id="asientos" name="asientos" required>
+                <label for="modelo_autobus" class="form-label">Modelo del Autobús:</label>
+                <select class="form-control" id="modelo_autobus" name="modelo_autobus" required>
+                    <option value="" selected disabled>Seleccione un modelo</option>
+                    <option value="Mercedes-Benz Sprinter 515">Mercedes-Benz Sprinter 515</option>
+                    <option value="Volvo B8R">Volvo B8R</option>
+                </select>
             </div>
             <div class="mb-3">
-                <label for="modelo_autobus" class="form-label">Modelo del Autobús:</label>
-                <input type="text" class="form-control" id="modelo_autobus" name="modelo_autobus" required>
+                <label for="asientos" class="form-label">Asientos:</label>
+                <input type="number" class="form-control" id="asientos" name="asientos" value="" placeholder="Selecciona un autobús" readonly>
             </div>
+
             <div class="d-flex justify-content-center">
                 <button type="button" class="btn btn-primary" onclick="enviarDatosAutobus()">Registrar</button>
             </div>
@@ -94,7 +99,42 @@
     <?php include 'components/footer.php'; ?>
 
     <script>
+        document.getElementById('modelo_autobus').addEventListener('change', function() {
+            var modelo = this.value;
+            var asientosInput = document.getElementById('asientos');
+
+            if (modelo) {
+                asientosInput.value = 44;
+            } else {
+                asientosInput.value = '';
+                asientosInput.placeholder = 'Selecciona un autobús';
+            }
+        });
+
         function enviarDatosAutobus() {
+            var modelo = document.getElementById('modelo_autobus').value;
+            var asientosInput = document.getElementById('asientos');
+
+            if (!modelo) {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor, seleccione un modelo de autobús.',
+                    icon: 'error',
+                    confirmButtonText: 'Cerrar'
+                });
+                return;
+            }
+
+            if (asientosInput.value !== '44') {
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Por favor, seleccione un autobús válido.',
+                    icon: 'error',
+                    confirmButtonText: 'Cerrar'
+                });
+                return;
+            }
+
             var xhr = new XMLHttpRequest();
             var url = "new_forms/insertar_autobus.php";
             xhr.open("POST", url, true);
@@ -111,6 +151,8 @@
                             confirmButtonText: 'Cerrar'
                         });
                         document.getElementById('formAutobus').reset();
+                        asientosInput.value = '';
+                        asientosInput.placeholder = 'Selecciona un autobús';
                     } else {
                         Swal.fire({
                             title: 'Error',
@@ -119,4 +161,13 @@
                             confirmButtonText: 'Cerrar'
                         });
                     }
-           
+                }
+            };
+
+            var formData = new FormData(document.getElementById('formAutobus'));
+            var params = new URLSearchParams(formData).toString();
+            xhr.send(params);
+        }
+    </script>
+</body>
+</html>
