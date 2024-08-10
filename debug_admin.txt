@@ -1,0 +1,12 @@
+Array
+(
+    [codigo_apartado] => 1
+    [num_asiento] => 1
+    [estado_reserva] => pagado
+    [id_horario] => 32
+    [id_trayecto] => 8
+    [origen] => San Pablo
+    [destino] => CD México
+    [fecha] => 2024-08-06
+    [hora_salida] => 20:00:00
+)

@@ -1,0 +1,14 @@
+Array
+(
+    [codigo_apartado] => 15
+    [num_asiento] => 15
+    [estado_reserva] => ocupado
+    [id_usuario] => 15
+    [id_horario] => 33
+    [id_trayecto] => 8
+    [origen] => San Pablo
+    [destino] => CD México
+    [fecha] => 2024-08-06
+    [hora_salida] => 21:00:00
+    [monto_pagar] => 100
+)
