@@ -1,11 +1,76 @@
 <?php
-    include 'conection/conection.php';
+include 'conection/conection.php';
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <?php include 'components/head_meta.php'; ?>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .form-label {
+            color: #465772;
+            font-weight: bold;
+        }
+        .form-control {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 15px;
+            background-color: #e9f2ff;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(109, 160, 237, 0.25);
+            border-color: #6DA0ED;
+        }
+        .btn-primary {
+            background-color: #6DA0ED;
+            border-radius: 20px;
+            padding: 10px 60px;
+            font-weight: 800;
+            font-size: 16px;
+            border: none;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+        .btn-primary:hover {
+            background-color: #5b8ad1;
+        }
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+                padding: 20px;
+            }
+            h2 {
+                font-size: 24px;
+            }
+            .btn-primary {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <?php include 'components/navbar.php'; ?>

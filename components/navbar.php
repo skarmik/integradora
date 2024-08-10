@@ -16,6 +16,23 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto">
+            <?php if (isset($_SESSION['admin_id'])): ?>
+          <!-- Links adicionales para administradores -->
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="auth/admin_register.php" style="color: white;">AGREGAR ADMINISTRADOR</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="new_horario.php" style="color: white;">AGREGAR HORARIO</a>
+          </li>
+          <li class="nav-item mx-3">
+            <a class="nav-link" href="new_autobus.php" style="color: white;">AGREGAR AUTOBUS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="new_trayecto.php" style="color: white;">AGREGAR TRAYECTO</a>
+          </li>
+        <?php elseif (isset($_SESSION['user_id'])): ?>
+         
+        <?php endif;?>
                 <li class="nav-item mx-3">
                     <a class="nav-link" href="index.php" style="color: white;">INICIO</a>
                 </li>
@@ -26,6 +43,9 @@
                 <a class="mx-3" href="<?php echo isset($_SESSION['admin_id']) ? 'admin_profile.php' : (isset($_SESSION['user_id']) ? 'user.php' : 'auth/login.php'); ?>">
                     <img style="width: 45px;" src="assets/images/user.png" alt="Perfil del usuario">
                 </a>
+                
+         
+
             </ul>
         </div>
     </div>
