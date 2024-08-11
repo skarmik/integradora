@@ -18,8 +18,11 @@
             <ul class="navbar-nav ms-auto">
             <?php if (isset($_SESSION['admin_id'])): ?>
           <!-- Links adicionales para administradores -->
+          <li class="nav-item">
+                        <a class="nav-link mx-3" href="new_noticia.php" style="color: white;">AGREGAR NOTICIA</a>
+                    </li>
           <li class="nav-item mx-3">
-            <a class="nav-link" href="auth/admin_register.php" style="color: white;">AGREGAR ADMINISTRADOR</a>
+            <a class="nav-link" href="auth/admin_register.php" style="color: white;">AGREGAR ADMIN</a>
           </li>
           <li class="nav-item mx-3">
             <a class="nav-link" href="new_horario.php" style="color: white;">AGREGAR HORARIO</a>

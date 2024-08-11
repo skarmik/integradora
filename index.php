@@ -31,6 +31,7 @@
 <html lang="en">
     <head>
         <?php include 'components/head_meta.php'; ?>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <style>
             body {
                 font-family: 'Inter', sans-serif;
@@ -68,7 +69,7 @@
                 color: inherit;
             }
             .card-custom:hover {
-                transform: scale(1.05);
+                transform: scale(1.02);
             }
             .card-custom img {
                 width: 100%;
@@ -93,7 +94,8 @@
                 color: #fff;
             }
             .select option {
-                color: #000;
+                color: #fff; /* Color blanco para las opciones del select */
+                background-color: rgba(10, 25, 45, 0.9); /* Asegura que el fondo de las opciones coincida con el fondo del select */
             }
             .boton_buscar {
                 border-radius: 20px;
@@ -151,8 +153,9 @@
     <body>
         <?php include 'components/navbar.php'; ?>
         <div class="fondo">
-            <form class="formm" action="<?php echo $is_admin ? 'admin_r_b.php' : 'resultado_busqueda.php'; ?>" method="GET">
+            <form class="formm" action="<?php echo $is_admin ? 'admin_r_b.php' : 'resultado_busqueda.php'; ?>" method="GET" onsubmit="return validateForm()">
                 <select class="select" id="origen" name="origen">
+                    <option value="" disabled selected>Origen</option>
                     <?php
                     if ($result_origen->num_rows > 0): 
                         while($row = $result_origen->fetch_assoc()): 
@@ -167,7 +170,8 @@
                         <option>No hay orígenes disponibles</option>
                     <?php endif; ?>
                 </select>
-                <select class="select" id="destino" name="destino">
+                <select class="select" id="destino" name="destino" >
+                    <option value="" disabled selected>Destino</option>
                     <?php
                     if ($result_destino->num_rows > 0): 
                         while($row = $result_destino->fetch_assoc()): 
@@ -209,13 +213,31 @@
         </div>
     </body>
     <?php include 'components/footer.php'; ?>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script>
     $(document).ready(function() {
-        $("#fecha").datepicker({
-            dateFormat: "yy-mm-dd",
-            minDate: 0  
+        $("#fecha").flatpickr({
+            dateFormat: "Y-m-d",
+            minDate: "today"
         });
     });
-</script>
+
+    function validateForm() {
+        var origen = document.getElementById("origen").value;
+        var destino = document.getElementById("destino").value;
+
+        if (origen === "") {
+            alert("Por favor selecciona un origen.");
+            return false;
+        }
+
+        if (destino === "") {
+            alert("Por favor selecciona un destino.");
+            return false;
+        }
+
+        return true;
+    }
+    </script>
 
 </html>

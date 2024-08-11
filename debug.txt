@@ -1,14 +1,14 @@
 Array
 (
-    [codigo_apartado] => 21, 33
-    [num_asiento] => 21, 33
+    [codigo_apartado] => 1, 2
+    [num_asiento] => 1, 2
     [estado_reserva] => ocupado
-    [id_usuario] => 28
-    [id_horario] => 2032
-    [id_trayecto] => 12
-    [origen] => Mexico
-    [destino] => San pablo
-    [fecha] => 
-    [hora_salida] => 19:00:00
+    [id_usuario] => 27
+    [id_horario] => 2033
+    [id_trayecto] => 10
+    [origen] => San Pablo
+    [destino] => Zimatlan
+    [fecha] => 2024-08-11
+    [hora_salida] => 18:52:00
     [monto_pagar] => 100
 )
