@@ -33,7 +33,7 @@
                     <a class="nav-link" href="../contact.php" style="color: white;">CONTACTO</a>
                 </li>
               
-                <a class="mx-3" href="<?php echo isset($_SESSION['admin_id']) ? 'admin_profile.php' : (isset($_SESSION['user_id']) ? 'user.php' : 'auth/login.php'); ?>">
+                <a class="mx-3" href="<?php echo isset($_SESSION['admin_id']) ? '../admin_profile.php' : (isset($_SESSION['user_id']) ? 'user.php' : 'auth/login.php'); ?>">
                     <img style="width: 45px;" src="../assets/images/user.png" alt="Perfil del usuario">
                 </a>
             </ul>

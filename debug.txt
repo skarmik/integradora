@@ -1,14 +1,14 @@
 Array
 (
-    [codigo_apartado] => 4
-    [num_asiento] => 4
+    [codigo_apartado] => 21, 33
+    [num_asiento] => 21, 33
     [estado_reserva] => ocupado
-    [id_usuario] => 31
-    [id_horario] => 33
-    [id_trayecto] => 8
-    [origen] => San Pablo
-    [destino] => CD México
-    [fecha] => 2024-08-06
-    [hora_salida] => 21:00:00
+    [id_usuario] => 28
+    [id_horario] => 2032
+    [id_trayecto] => 12
+    [origen] => Mexico
+    [destino] => San pablo
+    [fecha] => 
+    [hora_salida] => 19:00:00
     [monto_pagar] => 100
 )

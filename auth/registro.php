@@ -10,8 +10,8 @@
         
         <title>TicketOax</title>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
-
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -24,95 +24,109 @@
         <link rel="stylesheet" href="../styles/style.css">
     </head>
     <style>
+     .nav-link {
+            font-family: 'Inter', sans-serif;
+            font-weight: 100;
+        }
 
-.nav-link {
-    font-family: 'Inter', sans-serif; /* Aplica la fuente Inter */
-    font-weight: 100; /* Hace el texto en negritas */
-}
+        h4 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .input-group {
+            
+          
+            margin: 0 auto;
+        }
+
+        input[type="email"], input[type="text"], .form-control {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 15px;
+            background-color: #FFFFFF;
+            width: 96%;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(109, 160, 237, 0.25);
+            border-color: #6DA0ED;
+            
+            
+        }
+        
 
 
+        label {
+            color: #465772;
+            display: block;
+            margin-bottom: 0px;
+            font-size: 20px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 200;
+        }
 
-h4 {
-                font-family: 'Inter', sans-serif;
-                font-weight: 800;
+        .bg-form {
+            padding: 10px 30px 10px;
+            border-radius: 20px;
+            background-color: #d6e1f7;
+            max-width: 60%;
+            margin: 20px auto 30px;
+        }
 
+        .btn-primary {
+            background-color: #6DA0ED;
+            border-radius: 20px;
+            padding: 10px 60px;
+        }
+        @media (max-width: 768px) {
+            .bg-form {
+                padding: 0px;
+                margin-top: 5% auto;
+                max-width: 90%;
+                border-radius: 20px;
             }
 
-        input[type="password"], input[type="email"], input[type="text"] {
-                border: none;
-                border-radius: 12px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                padding: 10px 15px;
+            .btn {
+                width: 100%;
+                margin: 10px 0;
+            }
+
+            input[type="email"], input[type="text"], .form-control {
+                border-radius: 20px;
+                width: 100%;
+                margin: 10px 0;
                 background-color: #FFFFFF;
-                width: 60%;
-                display: block;
-                margin: 0px auto 0px;
+                padding: 10px 15px;
             }
 
-            .form-control:focus {
-                box-shadow: 0 0 0 0.2rem rgba(109, 160, 237, 0.25);
-                border-color: #6DA0ED;
+            .btn-primary {
+                font-size: 16px;
+                border-radius: 15px;
+                width: 70%;
             }
 
             label {
-                color: #465772;
-                display: block;
-                margin-bottom: 0px;
-                font-size: 20px;
-                font-family: 'Inter', sans-serif;
-                font-weight: 200; /* 200 corresponde a Extra Light */
+                font-size: 14px;
             }
+        }
 
-            .bg-form {
-                padding: 10px 30px 10px;
-                border-radius: 20px;
-                background-color: #d6e1f7;
-                max-width: 60%;
-                margin: 20px auto 30px;
-            }
+        .input-group-text {
+            background-color: #FFFFFF;
+            border: none;
+        }
 
-            .texto_italic {
-                font-family: italic;
-            }
+        /* Ocultar el icono por defecto dentro del input */
+        ::-ms-reveal,
+        ::-webkit-credentials {
+            display: none;
+        }
 
-            .btn-primary{
-                background-color: #6DA0ED;
-                border-radius: 20px;
-                padding: 10px 60px;
-            }
-
-            
-            @media (max-width: 768px) {
-                .bg-form {
-                    padding: 0px;
-                    margin-top: 5% auto;
-                    max-width: 90%;
-                    border-radius: 20px;
-                }
-
-                .btn {
-                    width: 100%;
-                    margin: 10px 0;
-                }
-                
-                input[type="password"], input[type="email"], input[type="text"] {
-                    border-radius: 20px;
-                    width: 100%;
-                    margin: 10px 0;
-                    background-color: #FFFFFF;
-                    padding: 10px 15px;
-                }
-
-                .btn-primary {
-                    font-size: 16px;
-                    border-radius: 15px;
-                    width: 70%;
-                }
-
-                label {
-                    font-size: 14px;
-                }
-            }
     </style>
 
 </head>
@@ -152,7 +166,7 @@ h4 {
     <div id="mensaje"></div>
     <h4 class="mt-4 text-center">REGISTRO</h4>
     <div class="container text-center bg-form mt-3 mx-auto mb-5">   
-        <div class="p-3" >
+        <div class="p-3">
             <form action="auth/procesar_registro.php" method="POST" id="formulario">
                 <div class="form-group">
                     <label for="nombre_usuario">Nombre completo</label>
@@ -163,11 +177,24 @@ h4 {
                     <input type="email" class="form-control" id="correo_electronico" name="correo_electronico" required>
                 </div>
                 <div class="form-group">
-                <label for="contrasena">Contraseña</label>
-<input type="password" class="form-control" id="contrasena" name="contrasena" required
-pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&_\-])[A-Za-z\d@$!%*?&_\-]{8,}"
-title="Debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula, un número y un carácter especial.">
-
+                    <label for="contrasena">Contraseña</label>
+                    <div class="input-group">
+                        <input  type="password"  class="form-control" id="contrasena" name="contrasena" required
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&_\-])[A-Za-z\d@$!%*?&_\-]{8,}"
+                        title="Debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula, un número y un carácter especial.">
+                        <span class="input-group-text">
+                            <i  class="fas fa-eye toggle-password" onclick="togglePasswordVisibility('contrasena')"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmar_contrasena">Confirmar Contraseña</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="confirmar_contrasena" name="confirmar_contrasena" required>
+                        <span class="input-group-text">
+                            <i class="fas fa-eye toggle-password" onclick="togglePasswordVisibility('confirmar_contrasena')"></i>
+                        </span>
+                    </div>
                 </div>
                 <button class="btn btn-primary mt-4" type="submit" name="registrarse">Registrarse</button>
             </form>
@@ -176,6 +203,18 @@ title="Debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula,
    <script>
         document.getElementById('formulario').onsubmit = function(event) {
             event.preventDefault();
+
+            var contrasena = document.getElementById('contrasena').value;
+            var confirmarContrasena = document.getElementById('confirmar_contrasena').value;
+
+            if (contrasena !== confirmarContrasena) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Las contraseñas no coinciden.',
+                });
+                return;
+            }
 
             var formData = new FormData(this);
 
@@ -213,6 +252,20 @@ title="Debe tener al menos 8 caracteres, incluir una mayúscula, una minúscula,
                 });
             });
         };
+
+        function togglePasswordVisibility(fieldId) {
+            var field = document.getElementById(fieldId);
+            var icon = field.nextElementSibling.querySelector('.fas');
+            if (field.type === "password") {
+                field.type = "text";
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                field.type = "password";
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
     </script>
 </body>
 <footer style="position: fixed; bottom: 0; width:100%; height: 45px;" class="mt-4">

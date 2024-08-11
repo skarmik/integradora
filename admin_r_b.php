@@ -21,39 +21,112 @@ $sql = "SELECT t.id_trayecto, t.origen, t.destino, t.fecha, h.hora_salida, h.hor
         JOIN horario h ON t.id_trayecto = h.id_trayecto
         WHERE t.origen = ? AND t.destino = ? AND h.fecha_salida = ?";
 $stmt = $conection->prepare($sql);
+
+if ($stmt === false) {
+    echo "Error en la preparación de la consulta: " . $conection->error;
+    exit;
+}
+
 $stmt->bind_param("sss", $origen, $destino, $fecha);
 $stmt->execute();
 $result = $stmt->get_result();
+
+if ($result === false) {
+    echo "Error en la ejecución de la consulta: " . $stmt->error;
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <?php include 'components/head_meta.php'; ?>
     <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
         .result-card {
             background-color: #C9D8F5;
             border-radius: 25px;
-            margin-bottom: 20px;
-            padding: 40px;
-            height: 200px;
+            margin: 20px auto;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            max-width: 900px; /* Ajuste del ancho máximo */
         }
-        .result-card img {
-            width: 200px;
+
+        .bus-image {
+            width: 150px;
             height: auto;
-            margin-left: -23px;
+            margin-right: 20px;
+            margin-top: 5px; /* Ajuste para subir el autobús */
+            padding-bottom: 20px; /* Añadir padding debajo de la imagen */
         }
-        .result-card .btn {
-            background-color: #2c3e50;
-            color: white;
+
+        .info-section {
+            background-color: #f8f9fa;
             border-radius: 20px;
-            width: 100px;
-            margin-top: 40px;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
         }
-        .result-card .btn:hover {
-            background-color: #1a252f;
+
+        .info-text p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+            color: #333;
         }
-        .result-card .price {
-            display: none; /* Ocultar el precio para administradores */
+
+        .info-text strong {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #4a69bd;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e3799;
+        }
+
+        @media (max-width: 768px) {
+            .result-card {
+                flex-direction: column;
+                padding: 20px;
+                align-items: center;
+            }
+
+            .bus-image {
+                margin-bottom: 20px;
+                margin-top: 0; /* Restablecer margen en dispositivos móviles */
+                padding-bottom: 0; /* Restablecer padding en dispositivos móviles */
+            }
+
+            .info-section {
+                width: 100%;
+            }
+        }
+
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -66,40 +139,19 @@ $result = $stmt->get_result();
             while ($row = $result->fetch_assoc()) {
                 echo '
                 <div class="mt-5 row result-card">
-                    <div class="col-12 col-md-2 col-lg-2">
-                        <img src="assets/images/autobus.png" alt="Bus">
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-6 bg-light rounded-10">
-                        <ul class="mt-3">
-                            <li>
-                                <div class="-badge"><i class="glyphicon glyphicon-check"></i></div>
-                                <div class="-panel">
-                                    <div class="-body">
-                                        <p><strong>' . $row['hora_salida'] . ' h</strong> ' . $row['origen'] . '</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="-badge"><i class="glyphicon glyphicon-check"></i></div>
-                                <div class="-panel">
-                                    <div class="-body">
-                                        <p>' . $row['hora_llegada'] . ' h ' . $row['destino'] . '</p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-md-2 col-lg-3 text-center bg-light pt-4">
-                        <div class="price mt-2"></div>
-                    </div>
-                    <div class="col-6 col-md-3 col-lg-1 text-right pt-2 background_button">
+                    <img class="bus-image" src="assets/images/autobus.png" alt="Bus">
+                    <div class="info-section">
+                        <div class="info-text">
+                            <p><strong>Hora de salida:</strong> ' . substr($row['hora_salida'], 0, 5) . ' h ' . $row['origen'] . '</p>
+                            <p><strong>Hora de llegada:</strong> ' . substr($row['hora_llegada'], 0, 5) . ' h ' . $row['destino'] . '</p>
+                        </div>
                         <form action="admin_apartar_boleto.php" method="GET">
                             <input type="hidden" name="id_trayecto" value="' . $row['id_trayecto'] . '">
                             <input type="hidden" name="origen" value="' . $row['origen'] . '">
                             <input type="hidden" name="destino" value="' . $row['destino'] . '">
                             <input type="hidden" name="fecha" value="' . $row['fecha'] . '">
                             <input type="hidden" name="hora" value="' . $row['hora_salida'] . '">
-                            <button type="submit" class="btn btn-primary py-2 px-3 mb-3">Administrar</button>
+                            <button type="submit" class="btn btn-primary">Administrar</button>
                         </form>
                     </div>
                 </div>';
